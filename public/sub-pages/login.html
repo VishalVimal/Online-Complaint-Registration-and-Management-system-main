@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FixIt | Login Portal</title>
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      body::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: pulse 15s ease-in-out infinite;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+      }
+      
+      .login-container {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 1200px;
+      }
+      
+      .page-title {
+        text-align: center;
+        color: white;
+        margin-bottom: 3rem;
+        animation: fadeInDown 0.6s ease-out;
+      }
+      
+      .page-title h1 {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 0.5rem;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      }
+      
+      .page-title p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+      }
+      
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        animation: fadeInUp 0.8s ease-out;
+      }
+      
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border: none;
+        border-radius: 20px;
+        padding: 2.5rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      }
+      
+      .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      }
+      
+      .card-img-top {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+        margin: 0 auto 1.5rem;
+        display: block;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+      }
+      
+      .card-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 0.75rem;
+        text-align: center;
+      }
+      
+      .card-body p {
+        color: #718096;
+        text-align: center;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+      }
+      
+      .btn {
+        border-radius: 10px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+      }
+      
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+      
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+      
+      .btn-outline-primary {
+        background: white;
+        color: #667eea;
+        border: 2px solid #667eea;
+      }
+      
+      .btn-outline-primary:hover {
+        background: #667eea;
+        color: white;
+        transform: translateY(-2px);
+      }
+      
+      .btn-outline-info {
+        background: white;
+        color: #17a2b8;
+        border: 2px solid #17a2b8;
+      }
+      
+      .btn-outline-info:hover {
+        background: #17a2b8;
+        color: white;
+        transform: translateY(-2px);
+      }
+      
+      .btn-group {
+        display: flex;
+        gap: 0.75rem;
+      }
+      
+      .btn-sm {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .page-title h1 {
+          font-size: 2rem;
+        }
+        .page-title p {
+          font-size: 1rem;
+        }
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <div class="page-title">
+        <h1><i class="bi bi-shield-lock-fill"></i> Welcome to FixIt</h1>
+        <p>Choose your login portal to get started</p>
+      </div>
+      
+      <div class="cards">
+        <div class="card">
+          <img src="../images/login/user.png" class="card-img-top" alt="User" />
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-person-circle"></i> Citizen Portal
+            </h5>
+            <p>Report issues, track complaints, and make your voice heard in your community.</p>
+            <div class="btn-group">
+              <a href="./user/login.html" class="btn btn-primary btn-sm">
+                <i class="bi bi-box-arrow-in-right"></i> Login
+              </a>
+              <a href="./user/signup.html" class="btn btn-outline-primary btn-sm">
+                <i class="bi bi-person-plus"></i> Sign Up
+              </a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="../images/login/officer.png" class="card-img-top" alt="Officer" />
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-briefcase-fill"></i> Officer Portal
+            </h5>
+            <p>Access your assigned complaints and update work status efficiently.</p>
+            <a href="./officer/login.html" class="btn btn-outline-info">
+              <i class="bi bi-box-arrow-in-right"></i> Officer Login
+            </a>
+          </div>
+        </div>
+        
+        <div class="card">
+          <img src="../images/login/admin.png" class="card-img-top" alt="Admin" />
+          <div class="card-body">
+            <h5 class="card-title">
+              <i class="bi bi-shield-check"></i> Admin Portal
+            </h5>
+            <p>Manage complaints, assign officers, and oversee the entire system.</p>
+            <a href="./admin/login.html" class="btn btn-outline-info">
+              <i class="bi bi-box-arrow-in-right"></i> Admin Login
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

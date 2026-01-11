@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Register Complaint | FixIt</title>
+    <link rel="shortcut icon" href="../images/logo.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Inter', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        position: relative;
+        overflow: auto;
+      }
+      
+      body::before {
+        content: '';
+        position: fixed;
+        top: -50%;
+        right: -50%;
+        width: 200%;
+        height: 200%;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+        animation: pulse 15s ease-in-out infinite;
+        z-index: 0;
+      }
+      
+      @keyframes pulse {
+        0%, 100% { transform: scale(1); opacity: 0.5; }
+        50% { transform: scale(1.1); opacity: 0.8; }
+      }
+      
+      .form-container {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 700px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 24px;
+        padding: 3rem;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        animation: fadeInUp 0.6s ease-out;
+      }
+      
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      
+      .form-header {
+        text-align: center;
+        margin-bottom: 2.5rem;
+      }
+      
+      .form-header h1 {
+        font-size: 2.25rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        margin-bottom: 0.5rem;
+      }
+      
+      .form-header p {
+        color: #718096;
+        font-size: 1rem;
+      }
+      
+      .form-floating {
+        margin-bottom: 1.5rem;
+      }
+      
+      .form-floating > label {
+        color: #2d3748;
+        font-weight: 600;
+      }
+      
+      .form-control {
+        border: 2px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 0.875rem 1.25rem;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+      }
+      
+      .form-control:focus {
+        border-color: #667eea;
+        box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      }
+      
+      .form-control::placeholder {
+        color: #a0aec0;
+      }
+      
+      textarea.form-control {
+        min-height: 120px;
+        resize: vertical;
+      }
+      
+      .input-group {
+        margin-bottom: 1.5rem;
+      }
+      
+      .input-group-text {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px 0 0 12px;
+        font-weight: 600;
+      }
+      
+      .form-control-file {
+        border-radius: 0 12px 12px 0;
+      }
+      
+      .btn-map {
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        padding: 0.75rem 1.5rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      
+      .btn-map:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(79, 172, 254, 0.4);
+        color: white;
+      }
+      
+      .form-check {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: #f7fafc;
+        border-radius: 12px;
+      }
+      
+      .form-check-input {
+        width: 1.25rem;
+        height: 1.25rem;
+        margin-top: 0.25rem;
+        border: 2px solid #e2e8f0;
+        border-radius: 4px;
+      }
+      
+      .form-check-input:checked {
+        background-color: #667eea;
+        border-color: #667eea;
+      }
+      
+      .form-check-label {
+        color: #2d3748;
+        font-weight: 500;
+        margin-left: 0.5rem;
+      }
+      
+      .form-check-label a {
+        color: #667eea;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      
+      .form-check-label a:hover {
+        text-decoration: underline;
+      }
+      
+      .btn-submit {
+        width: 100%;
+        padding: 1rem;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        margin-top: 1rem;
+      }
+      
+      .btn-submit:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+      }
+      
+      .btn-submit:active {
+        transform: translateY(0);
+      }
+      
+      @media (max-width: 768px) {
+        .form-container {
+          padding: 2rem 1.5rem;
+        }
+        
+        .form-header h1 {
+          font-size: 1.75rem;
+        }
+      }
+    </style>
+    <script>
+      const queryString = new URL(window.location.toLocaleString());
+      window.onload = function () {
+        document.myform.action = get_action();
+      };
+
+      function get_action() {
+        return queryString.pathname;
+      }
+    </script>
+  </head>
+  <body>
+    <div class="form-container">
+      <div class="form-header">
+        <h1><i class="bi bi-clipboard-plus"></i> Report an Issue</h1>
+        <p>Help us improve your community by reporting problems</p>
+      </div>
+      <form method="post" name="myform" enctype="multipart/form-data">
+        <div class="form-floating">
+          <input
+            name="complaint"
+            required
+            type="text"
+            class="form-control"
+            id="complaint"
+            placeholder="Complaint Title"
+          />
+          <label for="complaint"><i class="bi bi-tag me-1"></i> Complaint Title</label>
+        </div>
+        
+        <div class="form-floating">
+          <textarea
+            name="address"
+            required
+            class="form-control"
+            placeholder="Address"
+            id="address"
+            style="height: 100px"
+          ></textarea>
+          <label for="address"><i class="bi bi-geo-alt me-1"></i> Location Address</label>
+        </div>
+        
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-floating">
+              <input
+                name="addressURL"
+                required
+                type="url"
+                class="form-control"
+                id="map"
+                placeholder="Google Map URL"
+              />
+              <label for="map"><i class="bi bi-map me-1"></i> Google Map URL</label>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-items-end mb-3">
+            <a href="https://www.google.com/maps/" target="_blank" class="btn-map">
+              <i class="bi bi-globe"></i> Open Maps
+            </a>
+          </div>
+        </div>
+
+        <div class="form-check">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="gridCheck"
+            required
+          />
+          <label class="form-check-label" for="gridCheck">
+            I agree to the <a href="#" target="_blank">terms and conditions</a> and confirm that the information provided is accurate.
+          </label>
+        </div>
+        
+        <div class="input-group mb-4">
+          <span class="input-group-text">
+            <i class="bi bi-image me-1"></i> Upload Image
+          </span>
+          <input
+            type="file"
+            class="form-control form-control-file"
+            id="photo"
+            name="image"
+            accept="image/*"
+            required
+          />
+        </div>
+        
+        <button type="submit" class="btn-submit">
+          <i class="bi bi-send-fill"></i> Submit Complaint
+        </button>
+      </form>
+    </div>
+  </body>
+</html>
