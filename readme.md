@@ -11,6 +11,3 @@ The major goal of this project is to assist the general population in learning a
  ![mongoDB](https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white) &thinsp; 
 
 
-### About Me 👷🏼
-
-19, Student graduating BSc Information Technology, Aspiring young Fullstack Developer🧑‍💻.
